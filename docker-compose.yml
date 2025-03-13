@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  # MySQL Database Service
+  mysql:
+    image: mysql:8.0.33
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: sriram4321
+      MYSQL_DATABASE: springbootdb
+    #Allows connecting via localhost:3306, forwarding requests to MySQL in Docker.
+    ports:
+      - "3306:3306"  # Map host port 3306 to container port 3306
+    #Persists database data across container restarts.
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
+
+  # Spring Boot Application Service
+  backend:
+    image: my-spring-boot-app
+    container_name: spring-boot-backend
+    build:
+      context: ./BackendMovies
+      dockerfile: Dockerfile
+    ports:
+      - "9999:9999"  # Map host port 9999 to container port 9999
+    #When this backend container starts, it overrides the MySQL properties in application.properties with the environment variables defined below
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/springbootdb  # Use 'mysql' as the hostname
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: sriram4321
+      SERVER_PORT: 9999  # Set the server port explicitly
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+  frontend:
+    image: my-react-app
+    container_name: react-frontend
+    build:
+      context: ./front-end-movies
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    #When this backend container starts, it overrides the MySQL properties in application.properties with the environment variables defined below
+    environment:
+      SERVER_PORT: 3000  # Set the server port explicitly
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+# Volumes for persistent data storage
+volumes:
+  mysql-data:
+
+# Networks for communication between containers
+networks:
+  app-network:
+    driver: bridge
