@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("Tool Checkup") {
             steps {
-                sh '''
+                bat '''
                     docker info
                     docker version
                     docker compose version
@@ -12,14 +12,14 @@ pipeline {
         }
         stage("Docker Compose Build") {
             steps {
-                sh '''
+                bat '''
                     docker-compose build
                 '''
             }
         }
         stage("Docker Compose Up") {
             steps {
-                sh '''
+                bat '''
                     docker-compose up -d
                 '''
             }
