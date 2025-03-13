@@ -14,7 +14,7 @@ pipeline {
         stage("Removing Docker Containers") {
             steps {
                 bat '''
-                    docker ps
+                    docker-compose ps
                 '''
             }
         }
@@ -28,7 +28,7 @@ pipeline {
         stage("Running Containers") {
             steps {
                 bat '''
-                    docker ps
+                    docker-compose ps
                     docker-compose up -d
                 '''
             }
