@@ -14,7 +14,7 @@ pipeline {
         stage("Removing Containers if exist") {
             steps {
                 bat '''
-                    docker rm $(docker ps -aq)
+                    docker rm -f $(docker ps -aq)
                 '''
             }
         }
