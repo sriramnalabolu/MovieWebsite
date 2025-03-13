@@ -28,6 +28,7 @@ pipeline {
         stage("Running Containers") {
             steps {
                 bat '''
+                    docker ps
                     docker-compose up -d
                 '''
             }
