@@ -11,21 +11,21 @@ pipeline {
                 '''
             }
         }
-        stage("Docker Compose Down") {
+        stage("Removing Containers if exist") {
             steps {
                 bat '''
-                    docker-compose down
+                    docker rm -f mysql-db spring-boot-backend react-frontend
                 '''
             }
         }
-        stage("Docker Compose Build") {
+        stage("Building Docker Images") {
             steps {
                 bat '''
                     docker-compose build
                 '''
             }
         }
-        stage("Docker Compose Up") {
+        stage("Running Containers") {
             steps {
                 bat '''
                     docker-compose up -d
