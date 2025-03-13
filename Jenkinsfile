@@ -14,7 +14,7 @@ pipeline {
         stage("Removing Containers if exist") {
             steps {
                 bat '''
-                    docker rm -f mysql-db spring-boot-backend react-frontend
+                    docker rm $(docker ps -aq)
                 '''
             }
         }
