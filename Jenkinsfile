@@ -11,13 +11,6 @@ pipeline {
                 '''
             }
         }
-        stage("Removing Containers if exist") {
-            steps {
-                bat '''
-                    docker rm -f $(docker ps -aq)
-                '''
-            }
-        }
         stage("Building Docker Images") {
             steps {
                 bat '''
