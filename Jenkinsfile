@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage("tool checkup") {
+        stage("Tool Checkup") {
             steps {
                 sh '''
                     docker info
@@ -10,17 +10,17 @@ pipeline {
                 '''
             }
         }
-        stage("docker compose build") {
+        stage("Docker Compose Build") {
             steps {
                 sh '''
-                    docker-compose build .
+                    docker-compose build
                 '''
             }
         }
-        stage("docker compose up") {
+        stage("Docker Compose Up") {
             steps {
                 sh '''
-                    docker-compose up
+                    docker-compose up -d
                 '''
             }
         }
