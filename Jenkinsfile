@@ -11,11 +11,10 @@ pipeline {
                 '''
             }
         }
-        stage("Building Docker Images") {
+        stage("Removing Docker Containers") {
             steps {
                 bat '''
-                    docker-compose down
-                    docker rm *
+                    docker ps
                 '''
             }
         }
