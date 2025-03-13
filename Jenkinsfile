@@ -14,6 +14,14 @@ pipeline {
         stage("Building Docker Images") {
             steps {
                 bat '''
+                    docker-compose down
+                    docker rm *
+                '''
+            }
+        }
+        stage("Building Docker Images") {
+            steps {
+                bat '''
                     docker-compose build
                 '''
             }
