@@ -11,6 +11,7 @@ pipeline {
                 '''
             }
         }
+        //testing
         stage("Building Docker Images") {
             steps {
                 sh '''
