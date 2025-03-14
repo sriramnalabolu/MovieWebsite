@@ -11,13 +11,6 @@ pipeline {
                 '''
             }
         }
-        stage("Removing Docker Containers") {
-            steps {
-                sh '''
-                    docker-compose ps
-                '''
-            }
-        }
         stage("Building Docker Images") {
             steps {
                 sh '''
@@ -28,7 +21,6 @@ pipeline {
         stage("Running Containers") {
             steps {
                 sh '''
-                    docker-compose ps
                     docker-compose up -d
                 '''
             }
