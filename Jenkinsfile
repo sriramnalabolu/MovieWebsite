@@ -4,7 +4,7 @@ pipeline {
         stage("Tool Checkup") {
             steps {
                 //since we are running jenkins on windows, we are using bat but if on linux, we need to use sh
-                bat '''
+                sh '''
                     docker info
                     docker version
                     docker compose version
@@ -13,21 +13,21 @@ pipeline {
         }
         stage("Removing Docker Containers") {
             steps {
-                bat '''
+                sh '''
                     docker-compose ps
                 '''
             }
         }
         stage("Building Docker Images") {
             steps {
-                bat '''
+                sh '''
                     docker-compose build
                 '''
             }
         }
         stage("Running Containers") {
             steps {
-                bat '''
+                sh '''
                     docker-compose ps
                     docker-compose up -d
                 '''
