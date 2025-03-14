@@ -17,6 +17,7 @@ services:
     networks:
       - app-network
 
+  # sample comment
   # Spring Boot Application Service
   backend:
     image: my-spring-boot-app
