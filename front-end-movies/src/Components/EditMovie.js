@@ -45,6 +45,7 @@ export default function EditMovie() {
 
     const changeMovieImage = (event) => {
         console.log(event.target.value);
+        console.log(movie);
         setMovie({...movie,movieImgLink: event.target.value});
         console.log(movie);
     }
