@@ -11,7 +11,7 @@ pipeline {
                 '''
             }
         }
-        //testing6
+        //testing7
         stage("Building Docker Images") {
             steps {
                 bat '''
