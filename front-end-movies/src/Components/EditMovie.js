@@ -29,6 +29,7 @@ export default function EditMovie() {
 
     const editMovie = (e) => {
         e.preventDefault();
+        console.log(e);
         editMovieService(movie)
             .then((response) => {
                 navigate("/admin");
