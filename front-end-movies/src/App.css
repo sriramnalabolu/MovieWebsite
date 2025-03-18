@@ -75,6 +75,7 @@ img {
 }
 
 #editMovie {
+    position: absolute;
     margin: 30px;
 }
 
